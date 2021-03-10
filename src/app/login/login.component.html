@@ -1,0 +1,68 @@
+<div class="container-login">
+    <div class="auth-bg">
+        <div class="authentication-box">
+            <div class="text-center">Student app</div>
+            <div class="card">
+                <div class="card-body">
+                    <div *ngIf="screen == 'login'">
+                        <div class="text-center">
+                            <h4>LOGIN</h4>
+                            <h6>Enter your Username and Password</h6>
+                        </div>
+                        <form name="form" (ngSubmit)="login(f)" #f="ngForm" novalidate>
+                            <div class="form-group">
+                                <label class="col-form-label pt-0">E-mail</label>
+                                <input type="email" class="form-control" [(ngModel)]="credentials.username"
+                                    name="username" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Password</label>
+                                <input type="password" class="form-control" [(ngModel)]="credentials.password"
+                                name="password" required />
+                            </div>
+                            <div class="mt-4">
+                                <button [disabled]="loading" type="submit"
+                                    class="btn btn-fab btn-round btn-outline-info btn-block">
+                                    <span *ngIf="loading"><i class="fa fa-spin fa-lg fa-spinner"></i> Loading ...</span>
+                                    <span *ngIf="!loading">Login</span>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-left small"><a href='#' (click)="signUp()">Sign-up</a></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-right small"><a href='#' (click)="screen = 'reset'">Forgot password?</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div *ngIf="screen == 'reset'">
+                        <div class="text-left">
+                            <h4 class="mt-0">Forgot password</h4>
+                            <h6>Please enter your e-mail</h6>
+                            <p class="small">You you receive a password reset link on your e-mail</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label pt-0">E-mail</label>
+                            <input type="text" class="form-control" [(ngModel)]="passwordEmail"
+                                [ngModelOptions]="{standalone: true}" />
+                        </div>
+
+                        <div>
+                            <button [disabled]="loading" type="button"
+                                class="btn btn-fab btn-round btn-outline-info btn-block" (click)="sendResetLink()">
+                                <span *ngIf="!loading">Submit</span>
+                            </button>
+                        </div>
+
+                        <p class="text-center margin-top-1 small"><a href='#' (click)="screen = 'login'">Back to login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

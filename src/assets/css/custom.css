@@ -5,3 +5,21 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+.modal-backdrop.show {
+    opacity: 0.4;
+    z-index: 1000 !important;
+}
+
+.modal.show {
+    opacity: 1;
+    z-index: 1001 !important;
+}
+
+.modal-dialog {
+    margin-top: 75px !important;
+}
+
+.tooltip.show {
+    opacity: 1;
+}

@@ -1,0 +1,41 @@
+<form name="form" (ngSubmit)="save(f)" #f="ngForm" novalidate>
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h4 class="modal-title" id="modal-basic-title">{{mode}} Course</h4>
+            </div>
+
+            <div class="col-md-2 padding-top-1">
+                <a type="button" class="close" (click)="dismiss()" aria-label="Close">
+                    <span>&times;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div>
+            Name
+            <input type="text" class="form-control" [(ngModel)]="course.name" #courseName="ngModel" name="course-name" required />
+            <i *ngIf="f.submitted && !courseName.valid" class="text-danger"><small>Name is required!</small></i>
+        </div>
+
+        <div class="row margin-top-2">
+            <div class="col-md-6">
+                Start date
+                <input type="date" class="form-control" [(ngModel)]="course.startDate" #startDate="ngModel" name="course-start-date" required />
+                <i *ngIf="f.submitted && !startDate.valid" class="text-danger"><small>Start date is required!</small></i>
+            </div>
+
+            <div class="col-md-6">
+                End date
+                <input type="date" class="form-control" [(ngModel)]="course.endDate" #endDate="ngModel" name="course-end-date" required />
+                <i *ngIf="f.submitted && !endDate.valid" class="text-danger"><small>End date is required!</small></i>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-lg fa-save"></i> Save</button>
+        <button type="button" class="btn btn-light" (click)="dismiss()"><i class="fa fa-lg fa-times"></i>
+            Cancel</button>
+    </div>
+</form>

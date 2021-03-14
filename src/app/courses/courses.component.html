@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h4 class="title">Courses</h4>
+                                <p class="category">The list of courses</p>
+                            </div>
+
+                            <div class="col-md-3">
+                                <button  ngbTooltip="Add new course" *ngIf="isAdmin" class="btn btn-block btn-primary" (click)="openCourseModal('Add', null)">
+                                    <i class="fa fa-lg fa-plus"></i>
+                                    Add course
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                          <table class="table table-hover table-striped margin-bottom-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Start date</th>
+                                        <th>End date</th>
+                                        <th>Last updated</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let course of coursesList; let i = index">
+                                        <td>{{i + 1}}</td>
+                                        <th>{{course.name}}</th>
+                                        <th>{{course.startDate | date: 'MMM. dd, yyyy'}}</th>
+                                        <th>{{course.endDate | date: 'MMM. dd, yyyy'}}</th>
+                                        <th>{{(course.lastUpdated | date: 'MMM. dd, yyyy') || '-'}}</th>
+                                        <th>
+                                            <a class="text-primary cursor-pointer" ngbTooltip="Go to course">View</a>&nbsp;
+                                            <a class="text-success cursor-pointer" ngbTooltip="Edit course" *ngIf="isAdmin" (click)="openCourseModal('Edit', course)">Edit</a>&nbsp;
+                                            <a class="text-danger cursor-pointer" ngbTooltip="Delete course" *ngIf="isAdmin" (click)="deleteCourse(course.id)">Delete</a>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

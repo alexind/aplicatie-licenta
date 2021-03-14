@@ -1,11 +1,11 @@
 
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text">
+        <a href="#dashboard" class="simple-text">
             <div class="logo-img">
                 <img src="/assets/img/angular2-logo-white.png"/>
             </div>
-            Creative Tim
+            Student app
         </a>
     </div>
     <ul class="nav responsive-nav">
@@ -68,8 +68,8 @@
             </a>
         </li>
         <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-            <a  [routerLink]="[menuItem.path]">
+        <li class="w-100 d-block" routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
+            <a class="p-2" [routerLink]="[menuItem.path]">
                 <i class="{{menuItem.icon}}"></i>
                 <p>{{menuItem.title}}</p>
             </a>

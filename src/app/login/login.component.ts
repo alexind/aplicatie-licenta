@@ -41,7 +41,10 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.auth.signInWithEmailAndPassword(this.credentials.username, this.credentials.password).then(async data => {
       if (data.user.emailVerified) {
-        this.getUserData(data.user.uid);
+        await this.getUserData(data.user.uid);
+        await this.getCourses();
+        this.router.navigate(["/user"]);
+        this.loading = false;
       } else {
         this.notifications.showNotification("E-mail not verified", "top", "right", "danger");
         this.loading = false;
@@ -53,13 +56,29 @@ export class LoginComponent implements OnInit {
   }
 
   getUserData(uid) {
-    this.firestore.collection("users").doc(uid).get().subscribe((doc: any) => {
-      const user = doc.data();
-      user.uid = doc.id;
-      this.router.navigate(["/dashboard"]);
-      localStorage.setItem("USER_DATA", JSON.stringify(user));
-      this.userRoleService.setUserRole(user.userRole);
-      this.loading = false;
+    return new Promise(resolve => {
+      this.firestore.collection("users").doc(uid).get().subscribe((doc: any) => {
+        const user = doc.data();
+        user.uid = doc.id;        
+        localStorage.setItem("USER_DATA", JSON.stringify(user));
+        this.userRoleService.setUserRole(user.userRole);
+        resolve(true);
+      })
+    })
+  }
+
+  getCourses() {
+    return new Promise(resolve => {
+      this.firestore.collection("courses").ref.get().then(courses => {
+        let coursesList: any[] = [];
+        courses.forEach(course => {
+          let c: any = course.data();
+          c.id = course.id;
+          coursesList.push(c);
+        });
+        localStorage.setItem("COURSES", JSON.stringify(coursesList));
+        resolve(true);
+      })
     })
   }
 }

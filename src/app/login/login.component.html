@@ -1,22 +1,24 @@
 <div class="container-login">
     <div class="auth-bg">
         <div class="authentication-box">
-            <div class="text-center">Student app</div>
-            <div class="card">
+            <div class="text-center">
+                <i style="margin-left: -45px" class="fa fa-4x fa-graduation-cap"></i>
+            </div>
+            <div class="card margin-top-2">
                 <div class="card-body">
                     <div *ngIf="screen == 'login'">
-                        <div class="text-center">
-                            <h4>LOGIN</h4>
+                        <div class="text-center margin-bottom-2">
+                            <h4>LOGIN</h4><br />
                             <h6>Enter your Username and Password</h6>
                         </div>
                         <form name="form" (ngSubmit)="login(f)" #f="ngForm" novalidate>
                             <div class="form-group">
-                                <label class="col-form-label pt-0">E-mail</label>
+                                <label>E-mail</label>
                                 <input type="email" class="form-control" [(ngModel)]="credentials.username"
                                     name="username" required />
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label">Password</label>
+                                <label>Password</label>
                                 <input type="password" class="form-control" [(ngModel)]="credentials.password"
                                 name="password" required />
                             </div>

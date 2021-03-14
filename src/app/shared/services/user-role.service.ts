@@ -21,7 +21,7 @@ export class UserRoleService {
             if (this.role == null) {
                 this.firestore.collection("users").doc(uid).get().subscribe((user: any) => {
                     if (user) {
-                        this.role = user.data().userRoleId;
+                        this.role = user.data().userRole;
                         resolve(this.role);
                     } else {
                         resolve(null);

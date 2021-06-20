@@ -38,10 +38,6 @@ export class UserComponent implements OnInit {
       postalCode: this.user.postalCode
     });
 
-    // this.userData.firstName = this.user.firstName;
-    // this.userData.lastName = this.user.lastName;
-    // this.userData.about = this.user.about;
-
     localStorage.setItem("USER_DATA", JSON.stringify(this.user));
     this.notifications.showNotification("Profile was updated", "top", "right", "success");
   }

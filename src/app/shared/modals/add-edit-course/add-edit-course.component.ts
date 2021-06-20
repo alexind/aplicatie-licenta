@@ -30,8 +30,10 @@ export class AddEditCourseComponent implements OnInit {
 
     if (this.mode == "Add") {
       this.course.lastUpdated = null;
+      this.course.test = null;
+      this.course.course = null;
       this.firestore.collection("courses").add(this.course).then(createdCourse => {
-        this.course.id = createdCourse.id;
+        this.course.id = createdCourse.id;        
         this.activeModal.close(this.course);
       });      
     } else {

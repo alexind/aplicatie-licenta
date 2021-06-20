@@ -19,7 +19,7 @@
                         </div>
                         
                     </div>
-                    <div class="content table-responsive table-full-width">
+                    <div class="content table-responsive table-full-width padding-bottom-0">
                           <table class="table table-hover table-striped margin-bottom-0">
                                 <thead>
                                     <tr>
@@ -35,14 +35,16 @@
                                     <tr *ngFor="let course of coursesList; let i = index">
                                         <td>{{i + 1}}</td>
                                         <th>{{course.name}}</th>
-                                        <th>{{course.startDate | date: 'MMM. dd, yyyy'}}</th>
-                                        <th>{{course.endDate | date: 'MMM. dd, yyyy'}}</th>
-                                        <th>{{(course.lastUpdated | date: 'MMM. dd, yyyy') || '-'}}</th>
-                                        <th>
-                                            <a class="text-primary cursor-pointer" ngbTooltip="Go to course">View</a>&nbsp;
-                                            <a class="text-success cursor-pointer" ngbTooltip="Edit course" *ngIf="isAdmin" (click)="openCourseModal('Edit', course)">Edit</a>&nbsp;
-                                            <a class="text-danger cursor-pointer" ngbTooltip="Delete course" *ngIf="isAdmin" (click)="deleteCourse(course.id)">Delete</a>
-                                        </th>
+                                        <td>{{course.startDate | date: 'MMM. dd, yyyy'}}</td>
+                                        <td>{{course.endDate | date: 'MMM. dd, yyyy'}}</td>
+                                        <td>{{(course.lastUpdated | date: 'MMM. dd, yyyy') || '-'}}</td>
+                                        <td>
+                                            <a class="text-primary cursor-pointer" ngbTooltip="Go to course" (click)="goToCourse(course.id)">View&nbsp;&nbsp;</a>
+                                            <a class="text-success cursor-pointer" ngbTooltip="Edit course" *ngIf="isAdmin" (click)="openCourseModal('Edit', course)">Edit&nbsp;&nbsp;</a>
+                                            <a class="text-danger cursor-pointer" ngbTooltip="Delete course" *ngIf="isAdmin" (click)="deleteCourse(course.id)">Delete&nbsp;&nbsp;</a>
+                                            <a class="text-info cursor-pointer" ngbTooltip="Create test" *ngIf="isAdmin || isProfessor" (click)="createTest(course.id)">Test&nbsp;&nbsp;</a>
+                                            <a class="text-warning cursor-pointer" ngbTooltip="Course members" *ngIf="isAdmin" (click)="courseMembers(course.id)">Members&nbsp;&nbsp;</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                           </table>

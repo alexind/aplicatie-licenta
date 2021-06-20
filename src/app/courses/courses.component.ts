@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditCourseComponent } from 'app/shared/modals/add-edit-course/add-edit-course.component';
+import { AddEditAssessmentComponent } from 'app/shared/modals/add-edit-assessment/add-edit-assessment.component';
 import { UserRoleService } from 'app/shared/services/user-role.service';
 import Swal from 'sweetalert2';
+import { CourseContentComponent } from 'app/shared/modals/course-content/course-content.component';
+import { CourseMembersComponent } from 'app/shared/modals/course-members/course-members.component';
 
 @Component({
   selector: 'app-courses',
@@ -13,16 +16,39 @@ import Swal from 'sweetalert2';
 
 export class CoursesComponent implements OnInit {
   public isAdmin: boolean = false;
+  public isProfessor: boolean = false;
+  public isStudent: boolean = false;
   public userData: any = {};
+  public allCourses: any[] = [];
   public coursesList: any[] = [];
+
   constructor(private userRoleService: UserRoleService, private modalService: NgbModal, private firestore: AngularFirestore) {
-    this.coursesList = JSON.parse(localStorage.getItem("COURSES"));
+    this.allCourses = JSON.parse(localStorage.getItem("COURSES"));
     this.userData = JSON.parse(localStorage.getItem("USER_DATA"));
   }
 
   ngOnInit() {
     this.userRoleService.getUserRole(this.userData.uid).then(role => {
       this.isAdmin = this.userRoleService.isAdmin();
+      this.isProfessor = this.userRoleService.isProfessor();
+      this.isStudent = this.userRoleService.isStudent();
+
+      if (this.isAdmin) {
+        this.coursesList = JSON.parse(localStorage.getItem("COURSES"));
+      } else {
+        this.getCoursesForMember();
+      }
+    })
+  }
+
+  getCoursesForMember() {
+    this.firestore.collection("users").doc(this.userData.uid).collection("user-courses").ref.get().then(data => {
+      data.forEach(f => {
+        var tmpCourse = this.allCourses.find(c => c.id == f.id);
+        if (tmpCourse) {
+          this.coursesList.push(tmpCourse);
+        }
+      })
     })
   }
 
@@ -75,5 +101,21 @@ export class CoursesComponent implements OnInit {
         })       
       }
     })
+  }
+  
+  goToCourse(courseId) {
+    const modal = this.modalService.open(CourseContentComponent, { size: "lg" });
+    modal.componentInstance.courseId = courseId;
+    modal.componentInstance.isStudent = this.isStudent;
+  }
+
+  createTest(courseId) {
+    const modal = this.modalService.open(AddEditAssessmentComponent, { size: "lg" });
+    modal.componentInstance.courseId = courseId;
+  }
+
+  courseMembers(courseId) {
+    const modal = this.modalService.open(CourseMembersComponent, { size: "lg" });
+    modal.componentInstance.courseId = courseId;
   }
 }

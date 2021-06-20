@@ -10,5 +10,10 @@ export const AdminLayoutRoutes: Routes = [
         path: 'courses', 
         loadChildren: () => import('../../courses/courses.module').then(m => m.CoursesModule),
     },
-    { path: 'icons',          component: IconsComponent },
+    // { path: 'icons',          component: IconsComponent },
+    
+    // { 
+    //     path: 'assessment', 
+    //     loadChildren: () => import('../../assessment/assessment.module').then(m => m.AssessmentModule),
+    // },
 ];

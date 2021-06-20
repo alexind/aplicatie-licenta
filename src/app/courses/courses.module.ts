@@ -6,6 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { AddEditCourseModule } from 'app/shared/modals/add-edit-course/add-edit-course.module';
+import { AddEditAssessmentModule } from 'app/shared/modals/add-edit-assessment/add-edit-assessment.module';
+import { CourseContentModule } from 'app/shared/modals/course-content/course-content.module';
+import { CourseMembersModule } from 'app/shared/modals/course-members/course-members.module';
 
 @NgModule({
   declarations: [CoursesComponent],
@@ -15,7 +18,10 @@ import { AddEditCourseModule } from 'app/shared/modals/add-edit-course/add-edit-
     NgbModule,
     CoursesRoutingModule,
     NgxMaskModule,
-    AddEditCourseModule
+    AddEditCourseModule,
+    AddEditAssessmentModule,
+    CourseContentModule,
+    CourseMembersModule
   ]
 })
 export class CoursesModule { }

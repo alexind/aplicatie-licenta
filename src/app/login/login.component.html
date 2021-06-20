@@ -31,7 +31,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p class="text-left small"><a href='#' (click)="signUp()">Sign-up</a></p>
+                                    <p class="text-left small"><a href='#' (click)="screen = 'register'">Sign-up</a></p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="text-right small"><a href='#' (click)="screen = 'reset'">Forgot password?</a>
@@ -45,7 +45,7 @@
                         <div class="text-left">
                             <h4 class="mt-0">Forgot password</h4>
                             <h6>Please enter your e-mail</h6>
-                            <p class="small">You you receive a password reset link on your e-mail</p>
+                            <p class="small">You will receive a password reset link on your e-mail</p>
                         </div>
 
                         <div class="form-group">
@@ -58,6 +58,135 @@
                             <button [disabled]="loading" type="button"
                                 class="btn btn-fab btn-round btn-outline-info btn-block" (click)="sendResetLink()">
                                 <span *ngIf="!loading">Submit</span>
+                            </button>
+                        </div>
+
+                        <p class="text-center margin-top-1 small"><a href='#' (click)="screen = 'login'">Back to login</a></p>
+                    </div>
+
+                    <div *ngIf="screen == 'register'">
+                        <div class="text-left">
+                            <h4 class="mt-0">Register</h4>
+                            <h6>Create your credentials</h6>
+                            <p class="small">You will receive a confirmation email</p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input type="email" class="form-control" [(ngModel)]="credentials.username"
+                                            name="username" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" [(ngModel)]="credentials.password"
+                                        name="password" required />
+                                    </div>
+                                </div>
+                            </div>
+                                                    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.firstName" name="firstName" #firstName="ngModel" class="form-control" placeholder="First name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.lastName" name="lastName" #lastName="ngModel" class="form-control" placeholder="Last name" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select [(ngModel)]="registerCredentials.gender" name="gender" #gender="ngModel" class="form-control" required>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Date of birth</label>
+                                        <input type="date" [(ngModel)]="registerCredentials.dateOfBirth" name="dateOfBirth" #dateOfBirth="ngModel" class="form-control" required>  
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.phone" name="phone" #phone="ngModel" class="form-control" mask="(0000) 000 000" placeholder="(0770) 334 123" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Address line</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.addressLine" name="addressLine" #addressLine="ngModel" class="form-control" placeholder="Address line" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>County</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.state" name="state" #state="ngModel" class="form-control" placeholder="County" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.city" name="city" #city="ngModel" class="form-control" placeholder="City" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" [(ngModel)]="registerCredentials.country" name="country" #country="ngModel" class="form-control" placeholder="Country" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="text" maxlength="6" [(ngModel)]="registerCredentials.postalCode" name="postalCode" #postalCode="ngModel" class="form-control" placeholder="Postal Code" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        <textarea rows="5" [(ngModel)]="registerCredentials.about" name="about" #about="ngModel" class="form-control" placeholder="Here can be your description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>User Role</label>
+                                        <select [(ngModel)]= "registerCredentials.userRole" class="form-control" name="role">
+                                            <option value="rL2EIPpWvO3wDme32nO7">Professor</option>
+                                            <option value="TVwthn5DejSTpWXkvhNG">Student</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button [disabled]="loading" type="button"
+                                class="btn btn-fab btn-round btn-outline-info btn-block" (click)="signUp()">
+                                <span *ngIf="!loading">Register</span>
                             </button>
                         </div>
 

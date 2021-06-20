@@ -17,9 +17,13 @@
 }
 
 .modal-dialog {
-    margin-top: 75px !important;
+    transform: none !important;
 }
 
 .tooltip.show {
     opacity: 1;
+}
+
+.visibility-hidden {
+    visibility: hidden;
 }

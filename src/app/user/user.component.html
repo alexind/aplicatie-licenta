@@ -121,25 +121,25 @@
                     </div>
                     <div class="content">
                         <div class="author">
-                            <a href="#">
                                 <img class="avatar border-gray" src="assets/img/user-icon.png" alt="..."/>
 
-                                <h4 class="title">Mike Andrew<br />
-                                    <small>michael24</small>
+                                <h4 class="title">{{user.firstName + " " + user.lastName}}<br />
+                                    <small>{{user.city}}</small>
                                 </h4>
-                            </a>
+                                
                         </div>
-                        <p class="description text-center"> "Lamborghini Mercy <br>
-                            Your chick she so thirsty <br>
-                            I'm in that two seat Lambo"
+                        <p class="description text-center"> <br>
+                            <small>
+                            {{user.about}}
+                            </small>
                         </p>
                     </div>
                     <hr>
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
                         <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
                         <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

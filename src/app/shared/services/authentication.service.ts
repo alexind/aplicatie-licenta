@@ -42,4 +42,8 @@ export class AuthenticationService {
     resetPassword(email) {
         this.afAuth.sendPasswordResetEmail(email);
     }
+
+    
+
+
 }

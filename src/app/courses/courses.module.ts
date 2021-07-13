@@ -9,6 +9,7 @@ import { AddEditCourseModule } from 'app/shared/modals/add-edit-course/add-edit-
 import { AddEditAssessmentModule } from 'app/shared/modals/add-edit-assessment/add-edit-assessment.module';
 import { CourseContentModule } from 'app/shared/modals/course-content/course-content.module';
 import { CourseMembersModule } from 'app/shared/modals/course-members/course-members.module';
+import { TakeAssessmentModule } from 'app/shared/modals/take-assessment/take-assessment.module';
 
 @NgModule({
   declarations: [CoursesComponent],
@@ -21,7 +22,8 @@ import { CourseMembersModule } from 'app/shared/modals/course-members/course-mem
     AddEditCourseModule,
     AddEditAssessmentModule,
     CourseContentModule,
-    CourseMembersModule
+    CourseMembersModule,
+    TakeAssessmentModule
   ]
 })
 export class CoursesModule { }

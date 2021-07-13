@@ -43,6 +43,7 @@
                                             <a class="text-success cursor-pointer" ngbTooltip="Edit course" *ngIf="isAdmin" (click)="openCourseModal('Edit', course)">Edit&nbsp;&nbsp;</a>
                                             <a class="text-danger cursor-pointer" ngbTooltip="Delete course" *ngIf="isAdmin" (click)="deleteCourse(course.id)">Delete&nbsp;&nbsp;</a>
                                             <a class="text-info cursor-pointer" ngbTooltip="Create test" *ngIf="isAdmin || isProfessor" (click)="createTest(course.id)">Test&nbsp;&nbsp;</a>
+                                            <a class="text-info cursor-pointer" ngbTooltip="Take test" *ngIf="isStudent" (click)="takeTest(course.id)">Test&nbsp;&nbsp;</a>
                                             <a class="text-warning cursor-pointer" ngbTooltip="Course members" *ngIf="isAdmin" (click)="courseMembers(course.id)">Members&nbsp;&nbsp;</a>
                                         </td>
                                     </tr>

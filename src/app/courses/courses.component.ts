@@ -7,6 +7,7 @@ import { UserRoleService } from 'app/shared/services/user-role.service';
 import Swal from 'sweetalert2';
 import { CourseContentComponent } from 'app/shared/modals/course-content/course-content.component';
 import { CourseMembersComponent } from 'app/shared/modals/course-members/course-members.component';
+import { TakeAssessmentComponent } from 'app/shared/modals/take-assessment/take-assessment.component';
 
 @Component({
   selector: 'app-courses',
@@ -111,6 +112,11 @@ export class CoursesComponent implements OnInit {
 
   createTest(courseId) {
     const modal = this.modalService.open(AddEditAssessmentComponent, { size: "lg" });
+    modal.componentInstance.courseId = courseId;
+  }
+
+  takeTest(courseId) {
+    const modal = this.modalService.open(TakeAssessmentComponent, { size: "lg" });
     modal.componentInstance.courseId = courseId;
   }
 
